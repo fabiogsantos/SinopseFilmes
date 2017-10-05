@@ -3,9 +3,8 @@ package com.tecdam.fabiogsantos.sinopsefilmes.task;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.tecdam.fabiogsantos.sinopsefilmes.model.Genre;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
-import com.tecdam.fabiogsantos.sinopsefilmes.service.TheMovieDBService;
+import com.tecdam.fabiogsantos.sinopsefilmes.repository.api.TheMovieDBService;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.tecdam.fabiogsantos.sinopsefilmes;
+package com.tecdam.fabiogsantos.sinopsefilmes.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.tecdam.fabiogsantos.sinopsefilmes.model.Genre;
+import com.tecdam.fabiogsantos.sinopsefilmes.GenresFragment;
+import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.task.ListGenresAsyncTask;
 
-public class MainActivity extends AppCompatActivity implements GenresFragment.OnGenresSelectedListener{
+public class MainActivity extends AppCompatActivity implements GenresFragment.OnGenresSelectedListener {
 
     public static final String FRAGMENT_TAG = "fragment1";
     Fragment fragment;
