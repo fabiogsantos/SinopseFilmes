@@ -41,7 +41,7 @@ public class GenresFragment extends Fragment implements AdapterView.OnItemClickL
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnGenresSelectedListener {
-        void onGenreSelected(Genre genre);
+        void onGenreSelected(Genres.Genre genre);
     }
 
     public GenresFragment() {
@@ -51,7 +51,7 @@ public class GenresFragment extends Fragment implements AdapterView.OnItemClickL
     public static GenresFragment newInstance(Genres genres) {
         GenresFragment fragment = new GenresFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_GENRES, genres);
+        //args.putSerializable(ARG_GENRES, genres);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,14 +68,14 @@ public class GenresFragment extends Fragment implements AdapterView.OnItemClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_genres, container, false);
+        return inflater.inflate(R.layout.activity_main, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListViewGenres = (ListView) view.findViewById(R.id.listViewGenres);
-        ArrayAdapter<Genre> adapterGenres = new ArrayAdapter<Genre>(getActivity(),android.R.layout.simple_list_item_1,mGenres.getmGenres());
+        mListViewGenres = (ListView) view.findViewById(R.id.lstViewGenres);
+        ArrayAdapter<Genres.Genre> adapterGenres = new ArrayAdapter<Genres.Genre>(getActivity(),android.R.layout.simple_list_item_1,mGenres.genres);
         mListViewGenres.setAdapter(adapterGenres);
         mListViewGenres.setOnItemClickListener(this);
     }
@@ -100,7 +100,7 @@ public class GenresFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (mListener != null) {
-            mListener.onGenreSelected((Genre)adapterView.getSelectedItem());
+            mListener.onGenreSelected((Genres.Genre)adapterView.getSelectedItem());
         }
     }
 

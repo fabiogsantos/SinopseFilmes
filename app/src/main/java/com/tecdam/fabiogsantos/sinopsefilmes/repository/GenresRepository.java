@@ -2,24 +2,49 @@ package com.tecdam.fabiogsantos.sinopsefilmes.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.util.Log;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
 import com.tecdam.fabiogsantos.sinopsefilmes.repository.api.TheMovieServiceClient;
 import com.tecdam.fabiogsantos.sinopsefilmes.repository.api.TheMovieWebService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by fabio.goncalves on 05/10/2017.
  */
 
 public class GenresRepository {
-    private TheMovieWebService theMovieWebService = TheMovieServiceClient.getTheMovieServiceClient().create(TheMovieWebService.class);
+    private TheMovieWebService theMovieWebService = TheMovieServiceClient.getBuilderTheMovieRetrofit().create(TheMovieWebService.class);
 
-    public LiveData<Genres> getGenres() {
-        final MutableLiveData<Genres> mGenres = new MutableLiveData<>();
+    public LiveData<Genres> getGenres(String apiKey, String language) {
+        final MutableLiveData<Genres> data = new MutableLiveData<>();
 
-        PAROU AQUI
-                CONSULTAR DE
-        C:\Users\fabio.goncalves\Documents\TECDAM\Android\Android-Course-master\ArchitectureComponents-master\app\src\main\java\br\com\dfn\androidcomponent\architecturecomponents\repository
-                FilmsRepository.JAVA
+        //theMovieWebService.getGenres(apiKey, language).enqueue(new Callback<Genres>() {
+        theMovieWebService.getGenres().enqueue(new Callback<Genres>() {
+            @Override
+            public void onResponse(Call<Genres> call, Response<Genres> response) {
+                Log.i(GenresRepository.class.getSimpleName(),String.valueOf(response));
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Genres> call, Throwable t) {
+                Log.i(GenresRepository.class.getSimpleName(),t.getMessage());
+            }
+        });
+
+        // Não conseguiu carregar a lista remotamente, carrega uma lista padrão localmente
+        /*if (data.getValue() == null) {
+            Genres listGenres = new Genres();
+            listGenres.AddGenre(1, "Teste A");
+            listGenres.AddGenre(2, "Teste B");
+            listGenres.AddGenre(3, "Teste C");
+            data.setValue(listGenres);
+        }*/
+
+        return data;
     }
 }

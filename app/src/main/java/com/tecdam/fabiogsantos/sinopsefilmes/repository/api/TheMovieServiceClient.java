@@ -14,7 +14,7 @@ public class TheMovieServiceClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    public static Retrofit getTheMovieServiceClient() {
+    public static Retrofit getBuilderTheMovieRetrofit() {
         return retrofit;
     }
 
