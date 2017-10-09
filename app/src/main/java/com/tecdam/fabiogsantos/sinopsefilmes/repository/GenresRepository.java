@@ -22,11 +22,10 @@ public class GenresRepository {
     public LiveData<Genres> getGenres(String apiKey, String language) {
         final MutableLiveData<Genres> data = new MutableLiveData<>();
 
-        //theMovieWebService.getGenres(apiKey, language).enqueue(new Callback<Genres>() {
-        theMovieWebService.getGenres().enqueue(new Callback<Genres>() {
+        theMovieWebService.getGenres(apiKey, language).enqueue(new Callback<Genres>() {
+        //theMovieWebService.getGenres().enqueue(new Callback<Genres>() {
             @Override
             public void onResponse(Call<Genres> call, Response<Genres> response) {
-                Log.i(GenresRepository.class.getSimpleName(),String.valueOf(response));
                 data.setValue(response.body());
             }
 
@@ -35,15 +34,6 @@ public class GenresRepository {
                 Log.i(GenresRepository.class.getSimpleName(),t.getMessage());
             }
         });
-
-        // Não conseguiu carregar a lista remotamente, carrega uma lista padrão localmente
-        /*if (data.getValue() == null) {
-            Genres listGenres = new Genres();
-            listGenres.AddGenre(1, "Teste A");
-            listGenres.AddGenre(2, "Teste B");
-            listGenres.AddGenre(3, "Teste C");
-            data.setValue(listGenres);
-        }*/
 
         return data;
     }

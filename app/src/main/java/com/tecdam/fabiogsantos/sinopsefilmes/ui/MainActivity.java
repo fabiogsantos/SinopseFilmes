@@ -7,6 +7,10 @@ import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
     LifecycleRegistry lifecycleRegistrye = new LifecycleRegistry(this);
     private GenresViewModel genresViewModel;
     private ListView listGenres;
+    private BroadcastReceiver mChangeLanguageBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +34,15 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         setContentView(R.layout.activity_main);
 
         genresViewModel = ViewModelProviders.of(this).get(GenresViewModel.class);
-        genresViewModel.init("fe650d50ffdfaf937e01c252506c5d03","pt-BR");
+        genresViewModel.init(getString(R.string.apikey),getString(R.string.language));
 
         listGenres = findViewById(R.id.lstViewGenres);
 
         // Carrega os dados da View por meio do WebService com LiveData
         subscribeUi(genresViewModel);
+
+        // Configura os broadcasts necessários para a aplicação
+        ConfigBroadCastReceiver();
 
         // Configura o objeto que monitora a mudança de estado da activite
         getLifecycle().addObserver(this);
@@ -50,6 +58,21 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
                 }
             }
         });
+    }
+
+    protected void ConfigBroadCastReceiver(){
+        if(mChangeLanguageBroadcastReceiver == null) {
+            mChangeLanguageBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (genresViewModel != null) {
+                        genresViewModel.refresh(getString(R.string.apikey), getString(R.string.language));
+                    }
+                }
+            };
+            IntentFilter filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
+            registerReceiver(mChangeLanguageBroadcastReceiver, filter);
+        }
     }
 
     @Override

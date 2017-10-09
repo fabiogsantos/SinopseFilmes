@@ -8,7 +8,7 @@ import java.util.List;
  * Created by fabio.goncalves on 03/10/2017.
  */
 
-public class Genres /*implements Serializable*/ {
+public class Genres implements Serializable {
     public List<Genre> genres = new ArrayList<>();
 
     public class Genre {

@@ -23,6 +23,11 @@ public class GenresViewModel extends ViewModel {
         mGenres = genresRepository.getGenres(apiKey, language);
     }
 
+    public void refresh(String apiKey, String language) {
+        mGenres = null; // libera referencia na memoria e limpa a tela atraves do metodo observe
+        mGenres = genresRepository.getGenres(apiKey, language); // Carrega novamente a lista
+    }
+
     public LiveData<Genres> getGenres() {
         return this.mGenres;
     }

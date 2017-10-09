@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Synopsis Movies</string>
+    <string name="language">en-US</string>
+    <string name="genre">Movie Genre</string>
+</resources>

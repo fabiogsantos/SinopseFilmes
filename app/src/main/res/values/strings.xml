@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">SinopseFilmes</string>
+    <string name="app_name">Sinopse Filmes</string>
+    <string name="apikey">fe650d50ffdfaf937e01c252506c5d03</string>
+    <string name="language">pt-BR</string>
+    <string name="genre">Gênero do Filme</string>
 </resources>
