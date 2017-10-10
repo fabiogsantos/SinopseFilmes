@@ -23,7 +23,6 @@ public class GenresRepository {
         final MutableLiveData<Genres> data = new MutableLiveData<>();
 
         theMovieWebService.getGenres(apiKey, language).enqueue(new Callback<Genres>() {
-        //theMovieWebService.getGenres().enqueue(new Callback<Genres>() {
             @Override
             public void onResponse(Call<Genres> call, Response<Genres> response) {
                 data.setValue(response.body());

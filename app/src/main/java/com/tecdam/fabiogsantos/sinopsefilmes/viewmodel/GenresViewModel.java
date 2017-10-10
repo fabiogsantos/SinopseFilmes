@@ -14,18 +14,18 @@ import com.tecdam.fabiogsantos.sinopsefilmes.repository.GenresRepository;
 public class GenresViewModel extends ViewModel {
 
     private LiveData<Genres> mGenres;
-    private GenresRepository genresRepository = new GenresRepository();
+    private GenresRepository mGenresRepository = new GenresRepository();
 
     public void init(String apiKey, String language) {
         if(mGenres != null){
             return;
         }
-        mGenres = genresRepository.getGenres(apiKey, language);
+        mGenres = mGenresRepository.getGenres(apiKey, language);
     }
 
     public void refresh(String apiKey, String language) {
         mGenres = null; // libera referencia na memoria e limpa a tela atraves do metodo observe
-        mGenres = genresRepository.getGenres(apiKey, language); // Carrega novamente a lista
+        mGenres = mGenresRepository.getGenres(apiKey, language); // Carrega novamente a lista
     }
 
     public LiveData<Genres> getGenres() {

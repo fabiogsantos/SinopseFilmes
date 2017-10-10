@@ -4,42 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tecdam.fabiogsantos.sinopsefilmes.ui.MainActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:context="com.tecdam.fabiogsantos.sinopsefilmes.ui.MainActivity">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="3"
             android:orientation="vertical"
-            android:layout_weight="5"
-            tools:layout_editor_absoluteX="10dp"
-            tools:layout_editor_absoluteY="10dp">
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="8dp">
 
             <TextView
                 android:id="@+id/textTitleList"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_weight="1"
-                android:paddingLeft="10dp"
                 android:text="@string/genre"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -50,29 +45,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
+                android:layout_weight="9"
                 android:background="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitleList"
-                app:layout_constraintVertical_bias="1.0" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textTitleList" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="5"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="320dp">
+            android:layout_weight="7"
+            android:orientation="vertical">
 
         </LinearLayout>
 
