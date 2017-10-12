@@ -1,5 +1,7 @@
 package com.tecdam.fabiogsantos.sinopsefilmes.repository.api;
 
+import com.tecdam.fabiogsantos.sinopsefilmes.R;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

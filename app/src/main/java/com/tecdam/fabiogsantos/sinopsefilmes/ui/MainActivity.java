@@ -18,13 +18,20 @@ import android.widget.ListView;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
+import com.tecdam.fabiogsantos.sinopsefilmes.model.PageListMovie;
 import com.tecdam.fabiogsantos.sinopsefilmes.viewmodel.GenresViewModel;
+import com.tecdam.fabiogsantos.sinopsefilmes.viewmodel.PageListMovieViewModel;
 
 public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner, LifecycleObserver {
 
     LifecycleRegistry lifecycleRegistrye = new LifecycleRegistry(this);
+
     private GenresViewModel genresViewModel;
     private ListView listGenres;
+
+    private PageListMovieViewModel pageListMovieViewModel;
+    private ListView listMovies;
+
     private BroadcastReceiver mChangeLanguageBroadcastReceiver;
 
     @Override
@@ -32,13 +39,30 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listGenres = findViewById(R.id.lstViewGenres);
+
         genresViewModel = ViewModelProviders.of(this).get(GenresViewModel.class);
         genresViewModel.init(getString(R.string.apikey),getString(R.string.language));
 
-        listGenres = findViewById(R.id.lstViewGenres);
+        // Carrega os dados da View por meio do WebService com LiveData
+        subscribeUi_ListGenres(genresViewModel);
+
+
+        listMovies = findViewById(R.id.lstViewMovies);
+
+        pageListMovieViewModel = ViewModelProviders.of(this).get(PageListMovieViewModel.class);
+        pageListMovieViewModel.init(getString(R.string.apikey),
+                getString(R.string.language),
+                "BR",
+                "popularity.desc",
+                false,
+                false,
+                1,
+                "35");
 
         // Carrega os dados da View por meio do WebService com LiveData
-        subscribeUi(genresViewModel);
+        subscribeUi_ListMovies(pageListMovieViewModel);
+
 
         // Configura os broadcasts necessários para a aplicação
         ConfigBroadCastReceiver();
@@ -47,13 +71,25 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         getLifecycle().addObserver(this);
     }
 
-    private void subscribeUi(GenresViewModel genresViewModel) {
+    private void subscribeUi_ListGenres(GenresViewModel genresViewModel) {
         // Update the list when the data changes
         genresViewModel.getGenres().observe(this, new Observer<Genres>() {
             @Override
             public void onChanged(@Nullable Genres genres) {
                 if (genres != null) {
                     listGenres.setAdapter(new GenresAdapter(getApplicationContext(),R.layout.view_genre, genres.genres));
+                }
+            }
+        });
+    }
+
+    private void subscribeUi_ListMovies(PageListMovieViewModel pageListMovieViewModel) {
+        // Update the list when the data changes
+        pageListMovieViewModel.getPageListMovie().observe(this, new Observer<PageListMovie>() {
+            @Override
+            public void onChanged(@Nullable PageListMovie pageListMovie) {
+                if (pageListMovie != null) {
+                    listMovies.setAdapter(new MoviesAdapter(getApplicationContext(),R.layout.view_listmovie, pageListMovie.results));
                 }
             }
         });

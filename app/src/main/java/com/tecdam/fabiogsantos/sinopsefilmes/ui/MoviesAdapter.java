@@ -45,7 +45,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         EditText editTextSinopse = convertView.findViewById(R.id.editTextSinopse);
         editTextSinopse.setText(movie.overview);
-
+/*
         ImageView imageViewMovie = convertView.findViewById(R.id.imageViewMovie);
 
         Picasso.with(context)
@@ -53,7 +53,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
             .placeholder(R.drawable.loading)
             .error(R.drawable.loading_error)
             .into(imageViewMovie);
-        
+*/
         return convertView;
     }
 }
