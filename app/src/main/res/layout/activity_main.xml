@@ -27,7 +27,7 @@
             tools:layout_editor_absoluteY="10dp">
 
             <TextView
-                android:id="@+id/textTitleList"
+                android:id="@+id/textTitleListGenres"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
@@ -56,12 +56,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:background="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitleList"
+                app:layout_constraintTop_toBottomOf="@+id/textTitleListGenres"
                 app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>

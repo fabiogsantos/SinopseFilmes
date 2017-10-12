@@ -54,7 +54,7 @@ public class PageListMovieViewModel extends ViewModel {
                                                                     withGenres); // Carrega novamente a lista
     }
 
-    public LiveData<PageListMovie> getGenres() {
+    public LiveData<PageListMovie> getPageListMovie() {
         return this.mPageListMovie;
     }
 }

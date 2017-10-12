@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <ImageView
+        android:id="@+id/imageViewMovie"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="false"
+        app:srcCompat="@android:color/darker_gray"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textSize="14sp"
+        android:textColor="#2a2a3d"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/imageViewMovie"
+        android:layout_toEndOf="@+id/imageViewMovie" />
+
+    <EditText
+        android:id="@+id/editTextSinopse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="textCapWords|textMultiLine"
+        android:textSize="12sp"
+        android:textColor="#525253"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_toRightOf="@+id/imageViewMovie"
+        android:layout_toEndOf="@+id/imageViewMovie" />
+
+</RelativeLayout>

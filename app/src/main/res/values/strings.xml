@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">App Sinopse Filmes</string>
+    <string name="app_name">AppSinopseFilmes</string>
+    <string name="app_label">App Sinopse Filmes</string>
+    <string name="url_themoviedb">https://api.themoviedb.org/3/</string>
     <string name="apikey">fe650d50ffdfaf937e01c252506c5d03</string>
     <string name="language">pt-BR</string>
     <string name="genre">Gênero do Filme</string>
+    <string name="search_hint">Título do Filme</string>
+    <string name="url_themoviedb_image">http://image.tmdb.org/t/p</string>
 </resources>
