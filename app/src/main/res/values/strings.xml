@@ -5,5 +5,9 @@
     <string name="language">pt-BR</string>
     <string name="genre">Gênero do Filme</string>
     <string name="search_hint">Título do Filme</string>
-    <string name="url_themoviedb_image">http://image.tmdb.org/t/p</string>
+    <string name="url_themoviedb_image_small">http://image.tmdb.org/t/p/w92</string>
+    <string name="url_themoviedb_image_medium">http://image.tmdb.org/t/p/w185</string>
+    <string name="url_themoviedb_image_origin">http://image.tmdb.org/t/p/original</string>
+    <string name="region">BR</string>
+    <string name="sortlistmovie">popularity.desc</string>
 </resources>

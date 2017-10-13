@@ -1,9 +1,11 @@
 package com.tecdam.fabiogsantos.sinopsefilmes.ui;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +27,12 @@ import java.util.List;
 public class MoviesAdapter extends ArrayAdapter<Movie> {
 
     private Context context;
+    String urlPoster;
 
     public MoviesAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Movie> objects) {
         super(context, resource, objects);
         this.context = context;
+        this.urlPoster = context.getString(R.string.url_themoviedb_image_small);
     }
 
     @NonNull
@@ -45,15 +49,29 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         EditText editTextSinopse = convertView.findViewById(R.id.editTextSinopse);
         editTextSinopse.setText(movie.overview);
-/*
+
         ImageView imageViewMovie = convertView.findViewById(R.id.imageViewMovie);
 
         Picasso.with(context)
-            .load(context.getString(R.string.url_themoviedb_image)+movie.poster_path)
+            .load(urlPoster+movie.poster_path)
             .placeholder(R.drawable.loading)
             .error(R.drawable.loading_error)
             .into(imageViewMovie);
-*/
+
+        /*
+        // Usado apenas Para depuração do Picasso
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.listener(new Picasso.Listener()
+        {
+            @Override
+            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
+            {
+                //exception.printStackTrace();
+                Log.e("Picasso",exception.getMessage(),exception.fillInStackTrace());
+            }
+        });
+        builder.build().load(urlPoster+movie.poster_path).into(imageViewMovie);*/
+
         return convertView;
     }
 }

@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         pageListMovieViewModel = ViewModelProviders.of(this).get(PageListMovieViewModel.class);
         pageListMovieViewModel.init(getString(R.string.apikey),
                 getString(R.string.language),
-                "BR",
-                "popularity.desc",
+                getString(R.string.region),
+                getString(R.string.sortlistmovie),
                 false,
                 false,
                 1,
