@@ -25,10 +25,24 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/imageViewMovie"
         android:layout_toRightOf="@+id/imageViewMovie"
-        android:textColor="#2a2a3d"
+        android:textColor="#282863"
         android:textAlignment="textStart"
         android:textStyle="bold"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewInfoMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="#4747ac"
+        android:textAlignment="textStart"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:layout_below="@+id/textViewTitle"
+        android:layout_toEndOf="@+id/imageViewMovie"
+        android:layout_toRightOf="@+id/imageViewMovie"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/editTextSinopse"
@@ -36,7 +50,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textViewTitle"
         android:layout_toEndOf="@+id/imageViewMovie"
         android:layout_toRightOf="@+id/imageViewMovie"
         android:ems="10"
@@ -45,6 +58,7 @@
         android:ellipsize="end"
         android:enabled="false"
         android:textColor="#525253"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_below="@+id/textViewInfoMovie" />
 
 </RelativeLayout>

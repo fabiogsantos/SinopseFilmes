@@ -45,7 +45,10 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         }
 
         TextView textViewTitle = convertView.findViewById(R.id.textViewTitle);
-        textViewTitle.setText(movie.title+" (Data de Lançamento: "+movie.release_date+", Avaliação: "+String.valueOf(movie.vote_average)+", Votos: "+String.valueOf(movie.vote_count)+", Popularidade: "+String.valueOf(movie.popularity)+" )");
+        textViewTitle.setText(movie.title);
+
+        TextView textViewInfoMovire = convertView.findViewById(R.id.textViewInfoMovie);
+        textViewInfoMovire.setText("Lançamento: "+movie.release_date+"  Avaliação: "+String.valueOf(movie.vote_average)+"  Votos(s): "+String.valueOf(movie.vote_count)+"  Popularidade: "+String.valueOf(movie.popularity));
 
         EditText editTextSinopse = convertView.findViewById(R.id.editTextSinopse);
         editTextSinopse.setText(movie.overview);
