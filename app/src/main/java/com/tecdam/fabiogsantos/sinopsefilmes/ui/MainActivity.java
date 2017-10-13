@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
@@ -33,17 +34,6 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
         listMovies = findViewById(R.id.lstViewMovies);
 
         pageListMovieViewModel = ViewModelProviders.of(this).get(PageListMovieViewModel.class);
-        pageListMovieViewModel.init(getString(R.string.apikey),
-                getString(R.string.language),
-                getString(R.string.region),
-                getString(R.string.sortlistmovie),
-                false,
-                false,
-                1,
-                "35");
-
-        // Carrega os dados da View por meio do WebService com LiveData
-        subscribeUi_ListMovies(pageListMovieViewModel);
 
         // Configura o objeto que monitora a mudança de estado da activite
         getLifecycle().addObserver(this);
@@ -65,7 +55,20 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
     public void onGenreSelected(Genres.Genre genre) {
         try {
             if (genre != null) {
-                Toast.makeText(getApplication(), String.valueOf(genre.id) + "-" + genre.name, Toast.LENGTH_SHORT);
+                TextView textTitle = (TextView) findViewById(R.id.textTitleListMovies);
+                textTitle.setText(getString(R.string.titlelistmovie)+" - "+genre.name);
+
+                pageListMovieViewModel.refresh(getString(R.string.apikey),
+                        getString(R.string.language),
+                        getString(R.string.region),
+                        getString(R.string.sortlistmovie),
+                        false,
+                        false,
+                        1,
+                        String.valueOf(genre.id));
+
+                // Carrega os dados da View por meio do WebService com LiveData
+                subscribeUi_ListMovies(pageListMovieViewModel);
             }
         } catch (Exception e) {
             e.printStackTrace();

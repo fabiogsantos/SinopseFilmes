@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
@@ -29,7 +28,7 @@ import com.tecdam.fabiogsantos.sinopsefilmes.viewmodel.GenresViewModel;
  * Use the {@link GenresFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GenresFragment extends Fragment /*implements OnItemClickListener*/ {
+public class GenresFragment extends Fragment {
 
     private static final String ARG_GENRES = "Genres";
 
@@ -139,10 +138,6 @@ public class GenresFragment extends Fragment /*implements OnItemClickListener*/ 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //mListViewGenres = (ListView) view.findViewById(R.id.lstViewGenres);
-        //ArrayAdapter<Genres.Genre> adapterGenres = new ArrayAdapter<Genres.Genre>(getActivity(),android.R.layout.simple_list_item_1,mGenres.genres);
-        //mListViewGenres.setAdapter(adapterGenres);
-        //mListViewGenres.setOnItemClickListener(this);
     }
 
     @Override
@@ -161,12 +156,4 @@ public class GenresFragment extends Fragment /*implements OnItemClickListener*/ 
         super.onDetach();
         mListener = null;
     }
-/*
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (mListener != null) {
-            mListener.onGenreSelected((Genres.Genre)adapterView.getSelectedItem());
-        }
-    }
-*/
 }
