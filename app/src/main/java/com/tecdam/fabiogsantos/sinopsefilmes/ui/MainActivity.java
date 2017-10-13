@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
@@ -62,7 +63,13 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
 
     @Override
     public void onGenreSelected(Genres.Genre genre) {
-
+        try {
+            if (genre != null) {
+                Toast.makeText(getApplication(), String.valueOf(genre.id) + "-" + genre.name, Toast.LENGTH_SHORT);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

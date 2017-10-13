@@ -31,6 +31,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_weight="9"/>
+            android:layout_weight="9"
+            android:choiceMode="singleChoice"
+            android:listSelector="#7b93fa"/>
     </LinearLayout>
 </FrameLayout>

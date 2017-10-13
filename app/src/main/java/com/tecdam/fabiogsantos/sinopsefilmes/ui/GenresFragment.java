@@ -103,8 +103,9 @@ public class GenresFragment extends Fragment /*implements OnItemClickListener*/ 
                     mListViewGenres.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            adapterView.setSelected(true);
                             if (mListener != null) {
-                                mListener.onGenreSelected((Genres.Genre)adapterView.getSelectedItem());
+                                mListener.onGenreSelected((Genres.Genre)adapterView.getItemAtPosition(i));
                             }
                         }
                     });
