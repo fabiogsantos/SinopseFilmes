@@ -5,4 +5,5 @@
     <string name="genre">Movie Genre</string>
     <string name="search_hint">Movie Title</string>
     <string name="region">US</string>
+    <string name="titlelistmovie">List Movies</string>
 </resources>

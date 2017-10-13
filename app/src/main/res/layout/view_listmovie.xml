@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="150dp"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/imageViewMovie"
@@ -25,7 +26,9 @@
         android:layout_toEndOf="@+id/imageViewMovie"
         android:layout_toRightOf="@+id/imageViewMovie"
         android:textColor="#2a2a3d"
-        android:textSize="16sp" />
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextSinopse"
@@ -37,8 +40,11 @@
         android:layout_toEndOf="@+id/imageViewMovie"
         android:layout_toRightOf="@+id/imageViewMovie"
         android:ems="10"
-        android:inputType="textCapWords|textMultiLine"
+        android:paddingBottom="2dp"
+        android:inputType="none"
+        android:ellipsize="end"
+        android:enabled="false"
         android:textColor="#525253"
-        android:textSize="14sp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>
