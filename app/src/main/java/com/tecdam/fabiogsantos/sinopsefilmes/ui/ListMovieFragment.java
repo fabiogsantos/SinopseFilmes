@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
@@ -80,6 +81,11 @@ public class ListMovieFragment extends Fragment {
 
         mListMovies = view.findViewById(R.id.lstViewMovies);
         mTextTitle  = view.findViewById(R.id.textTitleListMovies);
+
+        // Create a progress bar to display while the list loads
+        ProgressBar progressBar = view.findViewById(R.id.progressBarListMovie);
+        progressBar.setVisibility(View.VISIBLE);
+        mListMovies.setEmptyView(progressBar);
 
         pageListMovieViewModel = ViewModelProviders.of(this).get(PageListMovieViewModel.class);
         mTextTitle.setText(getString(R.string.movie_title_list)+" - "+mGenre.name);

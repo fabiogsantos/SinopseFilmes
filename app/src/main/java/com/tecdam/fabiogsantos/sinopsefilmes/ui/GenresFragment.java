@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
@@ -80,7 +81,17 @@ public class GenresFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mListViewGenres = getView().findViewById(R.id.lstViewGenres);
+        View view = getView();
+        if  (view == null) {
+            return;
+        }
+
+        mListViewGenres = view.findViewById(R.id.lstViewGenres);
+
+        // Create a progress bar to display while the list loads
+        ProgressBar progressBar = view.findViewById(R.id.progressBarListGenre);
+        progressBar.setVisibility(View.VISIBLE);
+        mListViewGenres.setEmptyView(progressBar);
 
         genresViewModel = ViewModelProviders.of(this).get(GenresViewModel.class);
         genresViewModel.init(getString(R.string.apikey),getString(R.string.language));
