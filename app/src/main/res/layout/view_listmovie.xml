@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/imageViewMovie"
-        android:layout_width="150dp"
+        android:layout_width="110dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -52,10 +52,6 @@
         android:layout_alignParentRight="true"
         android:layout_toEndOf="@+id/imageViewMovie"
         android:layout_toRightOf="@+id/imageViewMovie"
-        android:ems="10"
-        android:inputType="none"
-        android:ellipsize="end"
-        android:enabled="false"
         android:textColor="#525253"
         android:textSize="18sp"
         android:layout_below="@+id/textViewInfoMovie" />

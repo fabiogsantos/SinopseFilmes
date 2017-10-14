@@ -43,10 +43,9 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
             mCurrentGenre = (Genres.Genre) savedInstanceState.getSerializable(KEY_STATE_ACTIVICE);
         }
 
-        // Se existe dois paineis entao mostra a lista de filmes do ultimo gênero selecionado
-        if (mDualPane) {
-          showListMovie(mCurrentGenre);
-        }
+        // Se existir gênero selecionado então exibe os dados no fragment lado a lado (landscape) ou
+        // na nova activity (portrait)
+        showListMovie(mCurrentGenre);
 
         // Configura o objeto que monitora a mudança de estado da activite
         getLifecycle().addObserver(this);
