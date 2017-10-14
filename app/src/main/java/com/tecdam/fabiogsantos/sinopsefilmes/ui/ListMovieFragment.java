@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -95,13 +94,13 @@ public class ListMovieFragment extends Fragment {
                 String.valueOf(mGenre.id));
 
         // Carrega os dados da View por meio do WebService com LiveData
-        subscribeUi_ListMovies(pageListMovieViewModel);
+        subscribeUi(pageListMovieViewModel);
 
         // Configura os broadcasts necessários para a aplicação
         ConfigBroadCastReceiver();
     }
 
-    private void subscribeUi_ListMovies(PageListMovieViewModel pageListMovieViewModel) {
+    private void subscribeUi(PageListMovieViewModel pageListMovieViewModel) {
         // Update the list when the data changes
         pageListMovieViewModel.getPageListMovie().observe(this, new Observer<PageListMovie>() {
             @Override

@@ -8,10 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Toast;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
@@ -52,16 +52,21 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
         getLifecycle().addObserver(this);
     }
 
+    // Recebe o click da lista de gênero dos filmes e
+    // Carrega na UI o fragment com a lista de filmes
     @Override
     public void onGenreSelected(Genres.Genre genre) {
         showListMovie(genre);
     }
 
+    // Recebe o click da lista de filmes e
+    // Carrega na UI a activite com os detalhes do filme selecionado
     @Override
     public void onMovieSelected(Movie movie) {
-        Toast.makeText(this, "Movie Selected "+movie.title, Toast.LENGTH_SHORT).show();
+        showDetailMovie(movie);
     }
 
+    // Carrega na UI o fragment com a lista de filmes conforme o gênero selecionado
     public void showListMovie(Genres.Genre genre) {
         mCurrentGenre = genre;
 
@@ -80,12 +85,19 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 fragmentTransaction.commit();
             }
-       } else {
+        } else {
             Intent intent = new Intent();
             intent.setClass(this, ListMovieActivity.class);
             intent.putExtra(ListMovieFragment.ARG_GENRE,genre);
             startActivity(intent);
         }
+    }
+
+    private void showDetailMovie(Movie movie) {
+        if (movie == null) {
+            return;
+        }
+        DetailMovieActivity.showActivite(this,movie);
     }
 
     @Override

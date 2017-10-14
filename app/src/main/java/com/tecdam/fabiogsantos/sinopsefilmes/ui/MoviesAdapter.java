@@ -24,7 +24,7 @@ import java.util.List;
 public class MoviesAdapter extends ArrayAdapter<Movie> {
 
     private Context context;
-    String urlPoster;
+    private String urlPoster;
 
     public MoviesAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Movie> objects) {
         super(context, resource, objects);
