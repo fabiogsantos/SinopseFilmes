@@ -88,8 +88,10 @@ public class GenresFragment extends Fragment {
         // Carrega os dados da View por meio do WebService com LiveData
         subscribeUi_ListGenres(genresViewModel);
 
-        // Configura os broadcasts necessários para a aplicação
-        ConfigBroadCastReceiver();
+        //if (savedInstanceState == null) {
+            // Configura os broadcasts necessários para a aplicação
+            ConfigBroadCastReceiver();
+        //}
     }
 
     private void subscribeUi_ListGenres(GenresViewModel genresViewModel) {
@@ -102,7 +104,9 @@ public class GenresFragment extends Fragment {
                     mListViewGenres.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            adapterView.setSelected(true);
+                            //adapterView.setSelected(true);
+                            //view.setSelected(true);
+                            mListViewGenres.setItemChecked(i, true);
                             if (mListener != null) {
                                 mListener.onGenreSelected((Genres.Genre)adapterView.getItemAtPosition(i));
                             }

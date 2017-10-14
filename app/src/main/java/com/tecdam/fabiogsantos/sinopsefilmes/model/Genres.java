@@ -11,7 +11,7 @@ import java.util.List;
 public class Genres implements Serializable {
     public List<Genre> genres = new ArrayList<>();
 
-    public class Genre {
+    public class Genre implements Serializable {
         public int id;
         public String name;
 

@@ -10,5 +10,12 @@
     <string name="url_themoviedb_image_origin">http://image.tmdb.org/t/p/original</string>
     <string name="region">BR</string>
     <string name="sortlistmovie">popularity.desc</string>
-    <string name="titlelistmovie">Lista de Filmes</string>
+    <string name="movie_title_list">Lista de Filmes</string>
+    <string name="movie_release_date">Lançamento</string>
+    <string name="movie_vote_average">Avaliação</string>
+    <string name="movie_vote_count">Voto(s)</string>
+    <string name="movie_popularity">Popularidade</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

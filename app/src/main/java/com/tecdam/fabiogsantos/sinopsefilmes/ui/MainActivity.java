@@ -1,78 +1,97 @@
 package com.tecdam.fabiogsantos.sinopsefilmes.ui;
 
-import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.util.AttributeSet;
+import android.view.View;
 import android.widget.Toast;
 
 import com.tecdam.fabiogsantos.sinopsefilmes.R;
 import com.tecdam.fabiogsantos.sinopsefilmes.model.Genres;
-import com.tecdam.fabiogsantos.sinopsefilmes.model.PageListMovie;
-import com.tecdam.fabiogsantos.sinopsefilmes.viewmodel.PageListMovieViewModel;
+import com.tecdam.fabiogsantos.sinopsefilmes.model.Movie;
 
-public class MainActivity extends AppCompatActivity implements GenresFragment.OnGenresSelectedListener, LifecycleRegistryOwner, LifecycleObserver {
+public class MainActivity extends AppCompatActivity implements GenresFragment.OnGenresSelectedListener, ListMovieFragment.OnMoviesSelectedListener, LifecycleRegistryOwner, LifecycleObserver {
+
+    private static final String KEY_STATE_ACTIVICE = "currentGenre";
+    private static final String BACK_STACK_MOVIE = "movie";
+
+    FragmentManager fragmentManager = getSupportFragmentManager();
 
     LifecycleRegistry lifecycleRegistrye = new LifecycleRegistry(this);
 
-    private PageListMovieViewModel pageListMovieViewModel;
-    private ListView listMovies;
+    private Genres.Genre mCurrentGenre;
+    private Boolean mDualPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listMovies = findViewById(R.id.lstViewMovies);
+        // Verifica se existe dois paineis
+        View frameListMovie = this.findViewById(R.id.frameListMovie);
+        mDualPane = ((frameListMovie != null) && (frameListMovie.getVisibility() == View.VISIBLE));
 
-        pageListMovieViewModel = ViewModelProviders.of(this).get(PageListMovieViewModel.class);
+        // Se ja existe uma instancia da activete entao resgata seu status
+        if (savedInstanceState != null) {
+            mCurrentGenre = (Genres.Genre) savedInstanceState.getSerializable(KEY_STATE_ACTIVICE);
+        }
+
+        // Se existe dois paineis entao mostra a lista de filmes do ultimo gênero selecionado
+        if (mDualPane) {
+          showListMovie(mCurrentGenre);
+        }
 
         // Configura o objeto que monitora a mudança de estado da activite
         getLifecycle().addObserver(this);
     }
 
-    private void subscribeUi_ListMovies(PageListMovieViewModel pageListMovieViewModel) {
-        // Update the list when the data changes
-        pageListMovieViewModel.getPageListMovie().observe(this, new Observer<PageListMovie>() {
-            @Override
-            public void onChanged(@Nullable PageListMovie pageListMovie) {
-                if (pageListMovie != null) {
-                    listMovies.setAdapter(new MoviesAdapter(getApplicationContext(),R.layout.view_listmovie, pageListMovie.results));
-                }
-            }
-        });
+    @Override
+    public void onGenreSelected(Genres.Genre genre) {
+        showListMovie(genre);
     }
 
     @Override
-    public void onGenreSelected(Genres.Genre genre) {
-        try {
-            if (genre != null) {
-                TextView textTitle = (TextView) findViewById(R.id.textTitleListMovies);
-                textTitle.setText(getString(R.string.titlelistmovie)+" - "+genre.name);
+    public void onMovieSelected(Movie movie) {
+        Toast.makeText(this, "Movie Selected "+movie.title, Toast.LENGTH_SHORT).show();
+    }
 
-                pageListMovieViewModel.refresh(getString(R.string.apikey),
-                        getString(R.string.language),
-                        getString(R.string.region),
-                        getString(R.string.sortlistmovie),
-                        false,
-                        false,
-                        1,
-                        String.valueOf(genre.id));
+    public void showListMovie(Genres.Genre genre) {
+        mCurrentGenre = genre;
 
-                // Carrega os dados da View por meio do WebService com LiveData
-                subscribeUi_ListMovies(pageListMovieViewModel);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (genre == null) {
+            return;
         }
+
+        if (mDualPane) {
+            ListMovieFragment listMovieFragment = (ListMovieFragment) fragmentManager.findFragmentById(R.id.frameListMovie);
+            if ((listMovieFragment == null) || (listMovieFragment.getGenre().id != genre.id)) {
+                listMovieFragment = ListMovieFragment.newInstance(genre);
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameListMovie,listMovieFragment);
+                //fragmentTransaction.addToBackStack(BACK_STACK_MOVIE); // Nos testes verifiquei que não necessita de back stack
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                fragmentTransaction.commit();
+            }
+       /* } else {
+            Intent intent = new Intent();
+            intent.setClass(this, ListMovieActivity.class);
+            intent.putExtra(ListMovieFragment.ARG_GENRE,genre);
+            startActivity(intent);*/
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(KEY_STATE_ACTIVICE,mCurrentGenre);
     }
 
     @Override

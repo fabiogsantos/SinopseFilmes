@@ -5,5 +5,9 @@
     <string name="genre">Movie Genre</string>
     <string name="search_hint">Movie Title</string>
     <string name="region">US</string>
-    <string name="titlelistmovie">List Movies</string>
+    <string name="movie_title_list">List Movies</string>
+    <string name="movie_release_date">Release</string>
+    <string name="movie_vote_average">Evaluation</string>
+    <string name="movie_vote_count">Votes</string>
+    <string name="movie_popularity">Popularity</string>
 </resources>

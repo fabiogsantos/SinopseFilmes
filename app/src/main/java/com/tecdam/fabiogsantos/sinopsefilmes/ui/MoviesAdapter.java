@@ -1,16 +1,13 @@
 package com.tecdam.fabiogsantos.sinopsefilmes.ui;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,9 +45,12 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         textViewTitle.setText(movie.title);
 
         TextView textViewInfoMovire = convertView.findViewById(R.id.textViewInfoMovie);
-        textViewInfoMovire.setText("Lançamento: "+movie.release_date+"  Avaliação: "+String.valueOf(movie.vote_average)+"  Votos(s): "+String.valueOf(movie.vote_count)+"  Popularidade: "+String.valueOf(movie.popularity));
+        textViewInfoMovire.setText(context.getString(R.string.movie_release_date)+": "+movie.release_date+"  "+
+                context.getString(R.string.movie_vote_average)+": "+String.valueOf(movie.vote_average)+"  "+
+                context.getString(R.string.movie_vote_count)+": "+String.valueOf(movie.vote_count)+"  "+
+                context.getString(R.string.movie_popularity)+": "+String.valueOf(movie.popularity));
 
-        EditText editTextSinopse = convertView.findViewById(R.id.editTextSinopse);
+        TextView editTextSinopse = convertView.findViewById(R.id.editTextSinopse);
         editTextSinopse.setText(movie.overview);
 
         ImageView imageViewMovie = convertView.findViewById(R.id.imageViewMovie);
