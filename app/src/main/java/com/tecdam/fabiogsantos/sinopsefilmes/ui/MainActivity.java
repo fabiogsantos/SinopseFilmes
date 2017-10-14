@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements GenresFragment.On
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 fragmentTransaction.commit();
             }
-       /* } else {
+       } else {
             Intent intent = new Intent();
             intent.setClass(this, ListMovieActivity.class);
             intent.putExtra(ListMovieFragment.ARG_GENRE,genre);
-            startActivity(intent);*/
+            startActivity(intent);
         }
     }
 

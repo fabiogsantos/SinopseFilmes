@@ -2,14 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutListMovieActivite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tecdam.fabiogsantos.sinopsefilmes.ui.MainActivity">
-
-    <fragment
-        android:id="@+id/fragmentGenres"
-        android:name="com.tecdam.fabiogsantos.sinopsefilmes.ui.GenresFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context="com.tecdam.fabiogsantos.sinopsefilmes.ui.ListMovieActivity">
 
 </android.support.constraint.ConstraintLayout>
