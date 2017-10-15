@@ -15,7 +15,5 @@
     <string name="movie_vote_average">Avaliação</string>
     <string name="movie_vote_count">Voto(s)</string>
     <string name="movie_popularity">Popularidade</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notification_download">Download da imagem do filme realizada com sucesso!</string>
 </resources>
