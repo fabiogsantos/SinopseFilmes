@@ -41,9 +41,6 @@ public class ListMovieFragment extends Fragment {
     private ListView mListMovies;
     private TextView mTextTitle;
 
-    private BroadcastReceiver mChangeLanguageBroadcastReceiver;
-    private IntentFilter mFilterLanguageBroadcastReceiver;
-
     private OnMoviesSelectedListener mListener;
 
     public static ListMovieFragment newInstance(Genres.Genre genre) {
@@ -101,9 +98,6 @@ public class ListMovieFragment extends Fragment {
 
         // Carrega os dados da View por meio do WebService com LiveData
         subscribeUi(pageListMovieViewModel);
-
-        // Configura os broadcasts necessários para a aplicação
-        ConfigBroadCastReceiver();
     }
 
     private void subscribeUi(PageListMovieViewModel pageListMovieViewModel) {
@@ -127,31 +121,6 @@ public class ListMovieFragment extends Fragment {
                 }
             }
         });
-    }
-
-    protected void ConfigBroadCastReceiver(){
-        if(mChangeLanguageBroadcastReceiver == null) {
-            mChangeLanguageBroadcastReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if ((pageListMovieViewModel != null) && (mGenre != null)) {
-                        pageListMovieViewModel.refresh(getString(R.string.apikey),
-                                getString(R.string.language),
-                                getString(R.string.region),
-                                getString(R.string.sortlistmovie),
-                                false,
-                                false,
-                                1,
-                                String.valueOf(mGenre.id));
-                    }
-                }
-            };
-
-            if (mFilterLanguageBroadcastReceiver != null) {
-                mFilterLanguageBroadcastReceiver = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
-                getActivity().registerReceiver(mChangeLanguageBroadcastReceiver, mFilterLanguageBroadcastReceiver);
-            }
-        }
     }
 
     @Override

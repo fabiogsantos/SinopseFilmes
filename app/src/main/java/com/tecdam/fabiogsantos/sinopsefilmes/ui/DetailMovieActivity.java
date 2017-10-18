@@ -117,7 +117,10 @@ public class DetailMovieActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mCompleteDownload);
+        if (mCompleteDownload != null) {
+            unregisterReceiver(mCompleteDownload);
+            mCompleteDownload = null;
+        }
     }
 
     private class CompleteDownload extends BroadcastReceiver {

@@ -171,4 +171,14 @@ public class GenresFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (mChangeLanguageBroadcastReceiver != null) {
+          getActivity().unregisterReceiver(mChangeLanguageBroadcastReceiver);
+          mChangeLanguageBroadcastReceiver = null;
+        }
+    }
 }

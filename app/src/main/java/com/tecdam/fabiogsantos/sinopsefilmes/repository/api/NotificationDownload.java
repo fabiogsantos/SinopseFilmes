@@ -16,12 +16,13 @@ public class NotificationDownload {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(android.R.drawable.stat_sys_download)
+                        .setSmallIcon(android.R.drawable.stat_sys_download_done)
                         .setContentTitle(title)
                         .setContentText(message);
 
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         mNotificationManager.notify(1, mBuilder.build());
+
     }
 }
