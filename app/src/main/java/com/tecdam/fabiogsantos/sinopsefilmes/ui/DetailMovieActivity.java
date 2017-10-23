@@ -82,7 +82,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         textViewDetailSynopseMovie.setText(mMovie.overview);
 
         Picasso.with(this)
-                .load(urlbackdrop + mMovie.backdrop_path)
+                .load(urlDownload + mMovie.backdrop_path)
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.loading_error)
                 .into(imageViewDetailBackDropMovie);
